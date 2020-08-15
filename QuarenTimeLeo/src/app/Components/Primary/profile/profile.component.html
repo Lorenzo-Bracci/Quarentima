@@ -1,0 +1,113 @@
+<app-top-nav-bar [hideSearch]="true"></app-top-nav-bar>
+<div id="container">
+  <div class="rela-block">
+    <div class="profile-pic" id="profile_pic"><span>{{user.avatar}}</span></div>
+    <div class="profile-name-container">
+      <svg id="settings" (click)="resetPassword = !resetPassword ; editing = false" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
+        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
+          stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+          font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+          <path d="M0,172v-172h172v172z" fill="none"></path>
+          <g fill="#000000">
+            <path
+              d="M162.2304,73.00024l-20.3304,-3.32304c-1.19024,-4.07984 -2.81736,-8.00144 -4.85384,-11.7132l11.868,-16.91448c0.95976,-1.36568 0.79464,-3.22672 -0.38528,-4.41008l-13.37816,-13.37128c-1.19368,-1.19024 -3.07192,-1.34504 -4.44104,-0.35776l-16.65992,11.97464c-3.74616,-2.07088 -7.70216,-3.7152 -11.80608,-4.90888l-3.54664,-20.24784c-0.28896,-1.64432 -1.71656,-2.84832 -3.3884,-2.84832h-18.92c-1.6856,0 -3.12352,1.2212 -3.39528,2.88616l-3.28864,20.13776c-4.128,1.1868 -8.09088,2.81392 -11.82328,4.85728l-16.6152,-11.868c-1.37256,-0.9804 -3.24048,-0.82216 -4.43416,0.36464l-13.37128,13.37128c-1.17992,1.17992 -1.34504,3.03752 -0.38528,4.4032l11.69256,16.72872c-2.0812,3.7668 -3.73928,7.75376 -4.94672,11.9024l-20.05864,3.34024c-1.65808,0.2752 -2.87584,1.71312 -2.87584,3.39184v18.92c0,1.6684 1.19712,3.096 2.838,3.3884l20.05864,3.55696c1.20056,4.13832 2.85864,8.12528 4.94672,11.9024l-11.83704,16.55672c-0.97696,1.36568 -0.82216,3.24048 0.36464,4.43416l13.37472,13.38504c1.17992,1.17992 3.04096,1.34504 4.40664,0.38528l16.7528,-11.73384c3.75992,2.06744 7.73312,3.70832 11.8508,4.89856l3.35744,20.16184c0.27176,1.65464 1.70624,2.86896 3.3884,2.86896h18.92c1.6684,0 3.096,-1.19712 3.38496,-2.838l3.5948,-20.2616c4.12456,-1.21432 8.07712,-2.86552 11.7992,-4.9364l16.8732,11.83704c1.36912,0.96664 3.22672,0.79808 4.41008,-0.38184l13.37472,-13.38504c1.19024,-1.19368 1.34504,-3.07536 0.35776,-4.44448l-12.03312,-16.70808c2.03992,-3.7152 3.66016,-7.64368 4.84008,-11.72352l20.35792,-3.57416c1.64776,-0.28896 2.84488,-1.72 2.84488,-3.3884v-18.92c0.00344,-1.6856 -1.21776,-3.12352 -2.88272,-3.39528zM86,110.08c-13.29904,0 -24.08,-10.78096 -24.08,-24.08c0,-13.29904 10.78096,-24.08 24.08,-24.08c13.29904,0 24.08,10.78096 24.08,24.08c0,13.29904 -10.78096,24.08 -24.08,24.08z">
+            </path>
+          </g>
+        </g>
+      </svg>
+
+      <svg id="edit" (click)="editing = true; resetPassword = false" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+        viewBox="0 0 172 172">
+        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
+          stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-size="none"
+          style="mix-blend-mode: normal">
+          <path d="M0,172v-172h172v172z" fill="none"></path>
+          <g id="original-icon" fill="#000000">
+            <path
+              d="M27.52,68.8c-11.395,0 -20.64,9.245 -20.64,20.64c0,11.395 9.245,20.64 20.64,20.64c11.395,0 20.64,-9.245 20.64,-20.64c0,-11.395 -9.245,-20.64 -20.64,-20.64zM86,68.8c-11.395,0 -20.64,9.245 -20.64,20.64c0,11.395 9.245,20.64 20.64,20.64c11.395,0 20.64,-9.245 20.64,-20.64c0,-11.395 -9.245,-20.64 -20.64,-20.64zM144.48,68.8c-11.395,0 -20.64,9.245 -20.64,20.64c0,11.395 9.245,20.64 20.64,20.64c11.395,0 20.64,-9.245 20.64,-20.64c0,-11.395 -9.245,-20.64 -20.64,-20.64z">
+            </path>
+          </g>
+        </g>
+      </svg>
+      <div *ngIf="resetPassword" id="resetPassDiv">
+        <svg id="settings" (click)="resetPassword = !resetPassword" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+          width="16" height="16" viewBox="0 0 172 172" style=" fill:#000000;">
+          <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none"
+            font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+            <path d="M0,172v-172h172v172z" fill="none"></path>
+            <g fill="#e74c3c">
+              <path
+                d="M107.33488,86l46.8872,-70.3308c0.70176,-1.05608 0.77056,-2.41144 0.172,-3.52944c-0.59856,-1.118 -1.76472,-1.81976 -3.03408,-1.81976h-25.2496c-1.12488,0 -2.18096,0.5504 -2.82424,1.47576l-37.28616,53.56424l-37.2896,-53.56424c-0.64328,-0.92536 -1.69592,-1.47576 -2.8208,-1.47576h-25.2496c-1.26936,0 -2.43552,0.69832 -3.03408,1.81632c-0.59856,1.118 -0.52976,2.4768 0.172,3.52944l46.8872,70.33424l-46.8872,70.3308c-0.70176,1.05608 -0.77056,2.41144 -0.172,3.52944c0.59856,1.118 1.76472,1.81976 3.03408,1.81976h25.2496c1.12488,0 2.18096,-0.5504 2.82424,-1.47576l37.28616,-53.56424l37.2896,53.56424c0.64328,0.92536 1.69592,1.47576 2.8208,1.47576h25.2496c1.26936,0 2.43552,-0.69832 3.03408,-1.81632c0.59856,-1.118 0.52976,-2.4768 -0.172,-3.52944z">
+              </path>
+            </g>
+          </g>
+        </svg>
+        <button class="settings-btn" (click)="sendPassResetEmail()" [disabled]="disabledSendButton">Change
+          Password</button>
+      </div>
+
+
+      <form *ngIf="editing" id="login-form" [formGroup]="User">
+        <svg id="close-editing" (click)="editing = false;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16"
+          height="16" viewBox="0 0 172 172" style=" fill:#000000;">
+          <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none"
+            font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+            <path d="M0,172v-172h172v172z" fill="none"></path>
+            <g fill="#e74c3c">
+              <path
+                d="M107.33488,86l46.8872,-70.3308c0.70176,-1.05608 0.77056,-2.41144 0.172,-3.52944c-0.59856,-1.118 -1.76472,-1.81976 -3.03408,-1.81976h-25.2496c-1.12488,0 -2.18096,0.5504 -2.82424,1.47576l-37.28616,53.56424l-37.2896,-53.56424c-0.64328,-0.92536 -1.69592,-1.47576 -2.8208,-1.47576h-25.2496c-1.26936,0 -2.43552,0.69832 -3.03408,1.81632c-0.59856,1.118 -0.52976,2.4768 0.172,3.52944l46.8872,70.33424l-46.8872,70.3308c-0.70176,1.05608 -0.77056,2.41144 -0.172,3.52944c0.59856,1.118 1.76472,1.81976 3.03408,1.81976h25.2496c1.12488,0 2.18096,-0.5504 2.82424,-1.47576l37.28616,-53.56424l37.2896,53.56424c0.64328,0.92536 1.69592,1.47576 2.8208,1.47576h25.2496c1.26936,0 2.43552,-0.69832 3.03408,-1.81632c0.59856,-1.118 0.52976,-2.4768 -0.172,-3.52944z">
+              </path>
+            </g>
+          </g>
+        </svg>
+
+        <div id="emoji-container">
+          <div *ngFor="let emoji of emojis; let i = index" class="emoji" (click)="selectEmoji(i)">
+            <span>{{emoji}}</span></div>
+        </div>
+        <input aria-label="" type="text" placeholder="User name" formControlName="username" />
+        <button type="submit" (click)="submitChanges()">Confirm</button>
+      </form>
+
+      <div class="user-name" id="user_name">{{user.name}}</div>
+      <div class="user-desc" id="user_description">{{user.email}}</div>
+    </div>
+  </div>
+
+
+  <div id="myList" class="myList-overflow" style="scrollbar-width: 16px; scrollbar-color: transparent transparent;">
+    <p style="font-family: var(--secondaryFont);">My Library</p>
+    <div id="topicsDiv">
+      <div id="topics">
+        <app-topic *ngFor="let topic of topics; let i = index" [title]="topic.title" (delete)="removeTopic(i)"
+          [pointer]="i" (clicked)="clickedTopic(i)" [isSelected]="selectedTopic === i" [color]="topic.color"
+          (update)="updateTopic($event, i)">
+        </app-topic>
+      </div>
+
+      <svg (click)="addTopic()" id="plus" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="64" height="64"
+        viewBox="0 0 172 172">
+        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
+          stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-size="none"
+          style="mix-blend-mode: normal">
+          <path d="M0,172v-172h172v172z" fill="none"></path>
+          <g id="original-icon" fill="#000000">
+            <path
+              d="M86,8.13074c-19.95469,0 -39.90938,7.59114 -55.09375,22.77551c-30.36875,30.36875 -30.36875,79.81875 0,110.1875c15.18437,15.18437 35.20625,22.84375 55.09375,22.84375c19.8875,0 39.90937,-7.65938 55.09375,-22.84375c30.36875,-30.36875 30.36875,-79.81875 0,-110.1875c-15.18438,-15.18437 -35.13906,-22.77551 -55.09375,-22.77551zM86,16.125c17.87188,0 35.7448,6.85208 49.45105,20.42395c27.14375,27.27812 27.14375,71.62397 0,98.9021c-27.27812,27.27812 -71.62187,27.27812 -98.76562,0c-27.27812,-27.27812 -27.28022,-71.62397 -0.13647,-98.9021c13.70625,-13.57187 31.57917,-20.42395 49.45105,-20.42395zM86,56.4375c-2.28437,0 -4.03125,1.74687 -4.03125,4.03125v21.5h-21.5c-2.28438,0 -4.03125,1.74688 -4.03125,4.03125c0,2.28437 1.74687,4.03125 4.03125,4.03125h21.5v21.5c0,2.28437 1.74688,4.03125 4.03125,4.03125c2.28437,0 4.03125,-1.74688 4.03125,-4.03125v-21.5h21.5c2.28437,0 4.03125,-1.74688 4.03125,-4.03125c0,-2.28437 -1.74688,-4.03125 -4.03125,-4.03125h-21.5v-21.5c0,-2.28438 -1.74688,-4.03125 -4.03125,-4.03125z">
+            </path>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div id="cards" style="overflow: auto; scrollbar-width: thin; scrollbar-color: #706f6f transparent;"
+      *ngIf="movies.length > 0 && selectedTopic != -1"
+      [style.border-color]="selectedTopic != -1 ? topics[selectedTopic].color : 'white'">
+      <app-picture-card *ngFor="let movie of movies; let i = index" [movie]="movie" [immutable]="false"
+        (delete)="deleteMovieFromList(i)">
+      </app-picture-card>
+    </div>
+  </div>
+</div>

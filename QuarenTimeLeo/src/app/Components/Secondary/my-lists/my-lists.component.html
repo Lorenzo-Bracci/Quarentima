@@ -1,0 +1,23 @@
+<div id="listContainer">
+  <ul id="menu">
+    <li (click)="changeSelectedCategory(0)">
+      <h1 [class.active]="selectedCategoryIndex === 0">Most Popular</h1>
+    </li>
+    <li (click)="changeSelectedCategory(1)">
+      <h1 [class.active]="selectedCategoryIndex === 1">New</h1>
+    </li>
+  </ul>
+
+  <div id="theWatchedList">
+    <div [style.background-image]="'url('+movie.background+')'" class="card"
+         *ngFor="let movie of showedMovies" (click)="openMoviePage(movie)">
+
+      <div class="background">
+        <h3>{{movie.title}}</h3>
+        <img src="{{movie.poster}}" alt=""/>
+        <p>{{movie.description}}</p>
+        <span>{{movie.rating}}</span>
+      </div>
+    </div>
+  </div>
+</div>

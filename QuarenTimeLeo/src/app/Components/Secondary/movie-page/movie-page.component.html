@@ -1,0 +1,93 @@
+<div class="movie-card">
+
+  <div class="container">
+    <div class = "add-list" *ngIf="adding" >
+      <div id = "list" *ngFor="let topic of topics; let i = index"  (click) ="addMovieToList(i)" [style.background-color]="topic.color"><p>{{topic.title}}</p></div>
+    </div>
+
+    <div style="position: relative;" [style.cursor]="trailer ? 'pointer' : 'default'" (click)="openTrailerOnNewTab()">
+
+      <img src="{{data.poster}}" alt="" class="cover" />
+
+      <svg *ngIf="trailer" id="play-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="180" height="180"
+        viewBox="0 0 172 172" style=" fill:#000000;">
+        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
+          stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+          font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+          <path d="M0,172v-172h172v172z" fill="none"></path>
+          <g> 
+            <circle cx="50" cy="50" transform="scale(1.72,1.72)" r="35" fill="#e74c3c"></circle>
+            <circle cx="50" cy="50" transform="scale(1.72,1.72)" r="31" fill="#ffffff"></circle>
+            <path d="M71.38,112.66l44.72,-26.66l-44.72,-26.66z" fill="#e74c3c"></path>
+            <path
+              d="M86,147.92c-34.14372,0 -61.92,-27.77628 -61.92,-61.92c0,-34.14372 27.77628,-61.92 61.92,-61.92c34.14372,0 61.92,27.77628 61.92,61.92c0,34.14372 -27.77628,61.92 -61.92,61.92zM86,27.52c-32.24656,0 -58.48,26.23344 -58.48,58.48c0,32.24656 26.23344,58.48 58.48,58.48c32.24656,0 58.48,-26.23344 58.48,-58.48c0,-32.24656 -26.23344,-58.48 -58.48,-58.48z"
+              fill="#e74c3c"></path>
+            <path
+              d="M112.66,41.67044c-0.14792,0 -0.29928,-0.03784 -0.43688,-0.11868c-1.10424,-0.65188 -2.24116,-1.26936 -3.38324,-1.83352c-0.42656,-0.21156 -0.60028,-0.72584 -0.39044,-1.1524c0.21156,-0.42484 0.72412,-0.60028 1.1524,-0.39044c1.17992,0.58308 2.3564,1.2212 3.49676,1.89544c0.40936,0.24252 0.54352,0.76884 0.30272,1.1782c-0.16168,0.27004 -0.44892,0.4214 -0.74132,0.4214z"
+              fill="#e74c3c"></path>
+            <path
+              d="M117.82,45.14828c-0.18232,0 -0.36464,-0.05848 -0.52116,-0.17716c-0.55556,-0.42484 -1.11972,-0.83764 -1.69076,-1.23668c-0.38872,-0.27348 -0.48332,-0.81012 -0.21156,-1.19884c0.27348,-0.38872 0.8084,-0.48332 1.19884,-0.21156c0.58996,0.41452 1.17476,0.84108 1.74924,1.2814c0.37668,0.28724 0.44892,0.82732 0.15996,1.20572c-0.17028,0.22188 -0.42656,0.33712 -0.68456,0.33712z"
+              fill="#e74c3c"></path>
+            <path
+              d="M86,139.32c-29.39996,0 -53.32,-23.92004 -53.32,-53.32c0,-29.39996 23.92004,-53.32 53.32,-53.32c6.30724,0 12.48204,1.0922 18.35584,3.24564c0.44548,0.1634 0.67596,0.65704 0.51084,1.10252c-0.1634,0.4472 -0.65532,0.67768 -1.10252,0.51084c-5.68288,-2.08292 -11.65988,-3.139 -17.76416,-3.139c-28.45224,0 -51.6,23.14776 -51.6,51.6c0,28.45224 23.14776,51.6 51.6,51.6c28.45224,0 51.6,-23.14776 51.6,-51.6c0,-14.51508 -6.1662,-28.44192 -16.91792,-38.20636c-0.3526,-0.31992 -0.3784,-0.86344 -0.05848,-1.21432c0.31992,-0.35432 0.86516,-0.37668 1.21432,-0.05848c11.10948,10.08952 17.48208,24.47904 17.48208,39.47916c0,29.39996 -23.92004,53.32 -53.32,53.32z"
+              fill="#e74c3c"></path>
+            <path
+              d="M71.38,113.52c-0.1462,0 -0.2924,-0.03612 -0.42484,-0.1118c-0.26832,-0.15308 -0.43516,-0.4386 -0.43516,-0.7482v-53.32c0,-0.3096 0.16684,-0.59512 0.43516,-0.7482c0.27004,-0.1548 0.60028,-0.14964 0.86516,0.0086l44.72,26.66c0.25972,0.15652 0.41968,0.43688 0.41968,0.7396c0,0.30272 -0.15996,0.58308 -0.41968,0.7396l-44.72,26.66c-0.13588,0.08084 -0.28896,0.1204 -0.44032,0.1204zM72.24,60.8536v50.2928l42.17956,-25.1464z"
+              fill="#e74c3c"></path>
+          </g>
+        </g>
+      </svg>
+
+
+
+
+
+
+
+    </div>
+    <div class="hero" [style.background]="'url(' + data.background + ')'" [style.background-size]="'cover'">
+      <div class='circle' (click)="adding = !adding">
+        <i class="fa fa-plus" aria-hidden="true"> </i>
+      </div>
+      <p *ngIf="done">Added</p>
+
+      <div class="details">
+        <div class="title1" style="text-shadow: 2px 4px #1b1b1b;">{{data.title}}</div>
+        <div>
+          <fieldset class="rating" style="margin-left: 0; padding-left: 0;">
+            <input type="radio" id="star5" name="rating" value="5" (click)="setRating(5)" /><label class="full"
+              for="star5" title="Awesome - 5 stars"></label>
+            <input type="radio" id="star4half" name="rating" value="4 and a half" (click)="setRating(4.5)" /><label
+              class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+            <input type="radio" id="star4" name="rating" value="4" (click)="setRating(4)" /><label class="full"
+              for="star4" title="Pretty good - 4 stars"></label>
+            <input type="radio" id="star3half" name="rating" value="3 and a half" (click)="setRating(3.5)" /><label
+              class="half" for="star3half" title="Meh - 3.5 stars"></label>
+            <input type="radio" id="star3" name="rating" value="3" (click)="setRating(3)" /><label class="full"
+              for="star3" title="Meh - 3 stars"></label>
+            <input type="radio" id="star2half" name="rating" value="2 and a half" (click)="setRating(2.5)" /><label
+              class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+            <input type="radio" id="star2" name="rating" value="2" (click)="setRating(2)" /><label class="full"
+              for="star2" title="Kinda bad - 2 stars"></label>
+            <input type="radio" id="star1half" name="rating" value="1 and a half" (click)="setRating(1.5)" /><label
+              class="half" for="star1half" title="Meh - 1.5 stars"></label>
+            <input type="radio" id="star1" name="rating" value="1" (click)="setRating(1)" /><label class="full"
+              for="star1" title="Sucks big time - 1 star"></label>
+            <input type="radio" id="starhalf" name="rating" value="half" (click)="setRating(0.5)" /><label class="half"
+              for="starhalf" title="Sucks big time - 0.5 stars"></label>
+          </fieldset>
+        </div>
+      </div>
+
+    </div>
+    <div class="description">
+      <div class="column1">
+        <span class="tag" *ngFor="let genre of data.genres">{{genre}}</span>
+      </div>
+      <div class="column2">
+        <p>{{data.description}}</p>
+      </div>
+    </div>
+
+  </div>
+</div>

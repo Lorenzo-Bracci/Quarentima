@@ -1,0 +1,416 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+.usercontainer {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252525;
+}
+.usercontainer .rela-block {
+  width: 900px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0);
+  display: flex;
+  justify-content: center;
+}
+.usercontainer .rela-block .profile-pic {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 10%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.usercontainer .rela-block .profile-pic span {
+  font-size: 9rem;
+  text-align: center;
+  padding-top: 20px;
+}
+.usercontainer .rela-block #edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.usercontainer .rela-block #edit #original-icon {
+  fill: #252525;
+}
+.usercontainer .rela-block .profile-name-container {
+  position: absolute;
+  top: 160px;
+  width: 800px;
+  height: 250px;
+  background-color: var(--text);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+.usercontainer .rela-block .user-name {
+  color: #252525;
+  font-family: var(--secondaryFont);
+  font-weight: 500;
+  font-size: 2.2rem;
+  align-self: center;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}
+.usercontainer .rela-block .user-desc {
+  color: #414040;
+  font-family: var(--secondaryFont);
+  font-weight: 500;
+  font-size: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  top: 140px;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  position: absolute;
+  top: 110px;
+}
+#container #profile {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+}
+#container #profile #emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size: 7rem;
+}
+#container #profile #info {
+  display: flex;
+  flex-direction: column;
+}
+#container #profile #info > p {
+  font-family: var(--primaryFont);
+  color: var(--text);
+}
+#container #profile #info #name {
+  font-size: 4rem;
+}
+#container #myList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 40px;
+  scrollbar-width: thin !important;
+}
+#container #myList > p {
+  align-self: flex-start;
+  margin-bottom: 5px;
+  font-family: var(--primaryFont);
+  font-size: 2rem;
+  color: var(--text);
+}
+#container #myList #topicsDiv {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  margin-bottom: 10px;
+}
+#container #myList #topicsDiv #topics {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: thin !important;
+  width: 100%;
+}
+#container #myList #topicsDiv #topics > app-topic {
+  flex-shrink: 0;
+}
+#container #myList #topicsDiv #plus {
+  margin-left: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 300ms transform;
+}
+#container #myList #topicsDiv #plus:hover {
+  transform: scale(1.05);
+}
+#container #myList #topicsDiv #plus #original-icon {
+  fill: var(--text);
+}
+#container #myList #cards {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  width: 90%;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: var(--background-dark);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #706f6f transparent;
+}
+#container #myList #cards > .movie-card {
+  flex-shrink: 0;
+}
+#container #myList #cards:hover #delete {
+  opacity: 1;
+}
+#container #myList #cards #delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 300ms;
+}
+#container #myList #cards #delete #original-icon {
+  fill: whitesmoke;
+}
+#container #myList #favouriteTitle {
+  align-self: flex-start;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-family: var(--primaryFont);
+  font-size: 2rem;
+  color: var(--text);
+}
+#container #myList #favourite {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  width: 90%;
+  overflow-x: auto;
+}
+#container #settingsDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 0 40px 40px 40px;
+}
+#container #settingsDiv > p {
+  align-self: flex-start;
+  margin-bottom: 5px;
+  font-family: var(--primaryFont);
+  font-size: 2rem;
+  color: var(--text);
+}
+#container #settingsDiv #optionsDiv > div {
+  margin-top: 20px;
+}
+#container #settingsDiv #optionsDiv #resetPassDiv {
+  display: flex;
+  align-items: center;
+}
+#container #settingsDiv #optionsDiv #resetPassDiv p {
+  color: #01ac01;
+  font-family: var(--secondaryFont);
+  font-size: 1.2rem;
+  opacity: 0;
+  margin-left: 10px;
+  transition: opacity 300ms;
+}
+
+.mat-dialog-container {
+  padding: 0px !important;
+}
+
+.row {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  row-gap: 10px;
+}
+
+.movie-card {
+  width: 300px;
+  height: 450px;
+  position: relative;
+  float: left;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.release-date {
+  color: #fff;
+}
+
+.movie-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.content {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+}
+
+.movie-card:hover .movie-content {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.movie-card:hover .overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  transition: 0.3s;
+}
+
+.release-date p {
+  margin: 0;
+}
+
+.movie-text {
+  padding: 0px 0 25px 0;
+}
+
+a {
+  display: block;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.settings-btn {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--accent);
+  border-radius: 20px;
+  width: 300px;
+  border: 2px solid var(--accent);
+  padding: 15px;
+  color: var(--text);
+  font-size: 14px;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.settings-btn:hover,
+.settings-btn:active,
+.settings-btn:focus {
+  background: var(--primary);
+}
+
+.settings-btn:disabled {
+  border-color: var(--accentDisabled);
+  background-color: transparent;
+  cursor: default;
+}
+
+#login-form {
+  position: absolute;
+  float: right;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 100%;
+  background: var(--background-dark);
+  border-radius: 0 9px 9px 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+#login-form #emoji-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  background: var(--background-dark);
+  border-radius: 20px;
+  height: 120px;
+  width: 240px;
+  display: grid;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-color: transparent #252525;
+  scrollbar-width: thin;
+  flex-shrink: 0;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  scroll-margin: 0;
+}
+#login-form #emoji-container .emoji {
+  width: 48px;
+  height: 48px;
+  margin: 3px;
+  cursor: pointer;
+}
+#login-form #emoji-container .emoji:focus, #login-form #emoji-container .emoji:active, #login-form #emoji-container .emoji:hover {
+  background-color: #aaa9a9;
+}
+#login-form #emoji-container .emoji span {
+  font-size: 2rem;
+}
+#login-form input {
+  margin: 10px 20px 15px;
+  padding: 15px;
+  background: var(--background-light);
+  border-radius: 20px;
+  font-size: 14px;
+  font-family: var(--contentFont);
+}
+#login-form button {
+  padding: 15px;
+  margin: 0 20px 10px;
+  background: var(--accent);
+  border-radius: 20px;
+  color: var(--text);
+  font-family: var(--contentFont);
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 300ms ease;
+}
+#login-form button:hover, #login-form button:active, #login-form button:focus {
+  background: var(--primary);
+}
+
+/*# sourceMappingURL=profile.component.css.map */

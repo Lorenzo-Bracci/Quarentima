@@ -1,0 +1,554 @@
+.rela-block {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  .profile-pic {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 10%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font-size: 9rem;
+      text-align: center;
+      padding-top: 20px;
+    }
+  }
+  #edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+    #original-icon {
+      fill: #252525;
+    }
+  }
+  #close-editing {
+    position: absolute;
+    top: 5px;
+    right: -5px;
+    background-color: transparent;
+    border: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  #settings {
+    position: absolute;
+    top: 0.2vw;
+    left: 0.2vw;
+    cursor: pointer;
+  }
+
+  .profile-name-container {
+    position: absolute;
+    top: 160px;
+    width: 800px;
+    height: 250px;
+    background-color: var(--text);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .user-name {
+    color: #252525;
+    font-family: var(--secondaryFont);
+    font-weight: 500;
+    font-size: 2.2rem;
+    align-self: center;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+  }
+  .user-desc {
+    color: #414040;
+    font-family: var(--secondaryFont);
+    font-weight: 500;
+    font-size: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    position: absolute;
+    top: 140px;
+  }
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  position: absolute;
+  
+  #profile {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+
+    #emoji {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 50px;
+
+      width: 100px;
+      height: 100px;
+
+      border-radius: 50%;
+
+      font-size: 7rem;
+    }
+
+    #info {
+      display: flex;
+      flex-direction: column;
+      & > p {
+        font-family: var(--primaryFont);
+        color: var(--text);
+      }
+      #name {
+        font-size: 4rem;
+      }
+    }
+  }
+
+  #myList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+    scrollbar-width: thin !important;
+    position: absolute;
+    top: 500px;
+    width: 100%;
+
+    & > p {
+      align-self: flex-start;
+      margin-bottom: 5px;
+      font-family: var(--primaryFont);
+      font-size: 2rem;
+      color: var(--text);
+    }
+
+    #topicsDiv {
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      max-width: 90%;
+
+      margin-bottom: 10px;
+
+      #topics {
+        display: flex;
+        overflow-x: auto;
+
+        scrollbar-width: thin !important;
+        width: 100%;
+
+        & > app-topic {
+          flex-shrink: 0;
+        }
+      }
+
+      #plus {
+        margin-left: 20px;
+
+        border-radius: 50%;
+
+        cursor: pointer;
+        transition: 300ms transform;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        #original-icon {
+          fill: var(--text);
+        }
+      }
+    }
+    #cards {
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+
+      margin-bottom: 50px;
+
+      width: 90%;
+
+      border: 2px solid white;
+      border-radius: 10px;
+      background-color: var(--background-dark);
+      overflow: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #706f6f transparent;
+
+      & > .movie-card {
+        flex-shrink: 0;
+      }
+
+      ////////////new code for delete button////////////
+      // :host {
+      //   position: relative;
+
+      //   display: flex;
+      //   align-items: center;
+      //   justify-content: center;
+
+      &:hover {
+        #delete {
+          opacity: 1;
+        }
+      }
+
+      #delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        z-index: 5;
+        opacity: 0;
+        cursor: pointer;
+        transition: opacity 300ms;
+
+        #original-icon {
+          fill: whitesmoke;
+        }
+      }
+
+      ////////////new code for delete button////////////
+    }
+
+    #favouriteTitle {
+      align-self: flex-start;
+      margin-top: 20px;
+      margin-bottom: 5px;
+
+      font-family: var(--primaryFont);
+      font-size: 2rem;
+      color: var(--text);
+    }
+    #favourite {
+      display: flex;
+      align-items: center;
+      align-self: flex-start;
+      width: 90%;
+
+      overflow-x: auto;
+    }
+  }
+
+  #resetPassDiv {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    border-radius: 9px 0 0 9px;
+    background-color: var(--background-dark);
+    z-index: 10;
+
+    p {
+      position: absolute;
+      top: 5vw;
+      color: #01ac01;
+      font-family: var(--secondaryFont);
+      font-size: 1.2rem;
+      opacity: 1;
+      margin-left: 10px;
+      transition: opacity 300ms;
+      z-index: 12;
+    }
+  }
+}
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+
+.mat-dialog-container {
+  padding: 0px !important;
+}
+.row {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  row-gap: 10px;
+}
+
+.movie-card {
+  width: 300px;
+  height: 450px;
+
+  position: relative;
+  float: left;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.release-date {
+  color: #fff;
+}
+
+.movie-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.content {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+}
+
+.movie-card:hover .movie-content {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.movie-card:hover .overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  transition: 0.3s;
+}
+
+.release-date p {
+  margin: 0;
+}
+
+.movie-text {
+  padding: 0px 0 25px 0;
+}
+
+a {
+  display: block;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.settings-btn {
+  position: absolute;
+  padding: 15px;
+  margin: 2vw 20px 10px;
+  background: var(--accent);
+  border-radius: 20px;
+  color: var(--text);
+  font-family: var(--contentFont);
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 300ms ease;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: var(--primary);
+  }
+}
+.settings-btn:hover,
+.settings-btn:active,
+.settings-btn:focus {
+  background: var(--primary);
+}
+
+.settings-btn:disabled {
+  border-color: var(--accentDisabled);
+  background-color: transparent;
+  cursor: default;
+}
+
+#login-form {
+  position: absolute;
+  float: right;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 100%;
+  background: var(--background-dark);
+
+  border-radius: 0 9px 9px 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+  #emoji-container {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+    background: var(--background-dark);
+    border-radius: 20px;
+    height: 120px;
+    width: 240px;
+    display: grid;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-color: transparent #252525;
+    scrollbar-width: thin;
+    flex-shrink: 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    scroll-margin: 0;
+    .emoji {
+      width: 48px;
+      height: 48px;
+      margin: 3px;
+
+      cursor: pointer;
+      &:focus,
+      &:active,
+      &:hover {
+        background-color: rgb(170, 169, 169);
+      }
+      span {
+        font-size: 2rem;
+      }
+    }
+  }
+  input {
+    margin: 10px 20px 15px;
+    padding: 15px;
+    background: var(--background-light);
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: var(--contentFont);
+  }
+  button {
+    padding: 15px;
+    margin: 0 20px 10px;
+    background: var(--accent);
+    border-radius: 20px;
+    color: var(--text);
+    font-family: var(--contentFont);
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 300ms ease;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: var(--primary);
+    }
+  }
+}
+
+
+@media only screen and (max-width: 1100px) {
+ 
+  .rela-block{
+    width: 60%;
+    .profile-name-container {
+      width: 80%;
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  #container {
+    margin-top: 30px;
+    #myList{
+      margin: 2.5%; 
+      width: 93%;
+    }
+    #resetPassDiv{
+      width: 50%;
+    }
+  }
+  .rela-block{
+    width: 70%;
+    .profile-name-container {
+      width: 85%;
+    }
+    .user-name{
+      width: 250px;
+
+    }
+    .user-desc{
+      width: 300px;
+    }
+  }
+  #login-form{
+    width: 50%;
+  }
+ 
+}
+@media only screen and (max-width: 400px) {
+  #container {
+    margin-top: 30px;
+    #myList{
+      margin: 2.5%; 
+      width: 95%;
+    }
+    #resetPassDiv{
+      width: 90%;
+    }
+  }
+  .rela-block{
+    width: 90%;
+    .profile-name-container {
+      width: 90%;
+    }
+    .user-name{
+      width: 80%;
+
+    }
+    .user-desc{
+      width: 80%;
+    }
+  }
+  #login-form{
+    width: 90%;
+  }
+
+  
+ 
+}

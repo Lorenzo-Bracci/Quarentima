@@ -1,0 +1,100 @@
+#mainContent {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  height: calc(100% - 110px);
+}
+
+#watchme-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  max-height: calc(100vh - 120px - 70px);
+}
+#watchme-container #watchmeMenu {
+  width: 100%;
+  min-height: 38px;
+  margin: 0 0 20px 0;
+  font-family: var(--secondaryFont);
+  color: var(--text);
+  background-color: var(--accent);
+  border-radius: 10px;
+  box-shadow: 0 1px 5px 1px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  position: relative;
+}
+#watchme-container #watchmeMenu #title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#watchme-container #watchmeMenu #genreTitle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  cursor: pointer;
+}
+#watchme-container #genre-list {
+  margin-bottom: 10px;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+}
+#watchme-container #genre-list #genre {
+  width: 90px;
+  background: var(--text);
+  color: black;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 14px;
+  font-family: var(--secondaryFont);
+  margin: 2px;
+  cursor: pointer;
+}
+#watchme-container #genre-list #genre:hover {
+  background: #b9b7b7;
+}
+#watchme-container #wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--background-dark);
+  box-shadow: inset 0 0 20px black;
+  border-radius: 10px;
+  overflow: auto;
+  scrollbar-color: var(--background-dark) var(--background) !important;
+  scrollbar-width: thin !important;
+}
+
+@media only screen and (max-width: 1100px) {
+  #mainContent {
+    grid-template-columns: 50% 50%;
+  }
+
+  #watchme-container #watchmeMenu #title {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  #mainContent {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 450px) {
+  #mainContent {
+    margin-top: 50px;
+  }
+}
+
+/*# sourceMappingURL=main-page.component.css.map */

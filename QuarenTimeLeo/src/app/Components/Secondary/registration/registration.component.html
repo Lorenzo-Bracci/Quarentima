@@ -1,0 +1,16 @@
+<div id="background"></div>
+
+<div id="title">
+  <p>Quarentime</p>
+  <p id="wasteTime">Waste time</p>
+</div>
+
+<form id="login-form" [formGroup]="user" (ngSubmit)="register()" method="post">
+  <input type="text" placeholder="Email address" formControlName="email" required aria-label=""/>
+  <input type="text" placeholder="Username" formControlName="username" required aria-label=""/>
+  <input type="password" placeholder="Password" formControlName="password" required aria-label=""/>
+  <input type="password" placeholder="Confirm password" formControlName="repeat" required aria-label=""/>
+  <label>{{errorMessage}}</label>
+  <button type="submit">Register</button>
+  <p>Already registered? <a routerLink="/login">Sign In</a></p>
+</form>

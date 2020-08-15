@@ -1,0 +1,20 @@
+<app-top-nav-bar (searchInputChange)="updateInput($event)"></app-top-nav-bar>
+<app-search-container [input]="input"></app-search-container>
+<div id="mainContent">
+<!--    <app-watch-it></app-watch-it>-->
+  <div id="watchme-container">
+    <div id="watchmeMenu">
+      <div id="title">{{selectedGenre == '' ? 'Watch Me' : selectedGenre}}</div>
+      <div id="genreTitle" (click)="genreButton()">{{selectedGenre != '' ? 'Watch Me' : 'Genres'}}</div>
+    </div>
+    <div id="genre-list" *ngIf="selectedGenre != ''">
+      <div id="genre" *ngFor="let genre of loadGenres(); let i = index" (click)= "getMovies(genre)" ><p>{{genre}}</p></div>
+    </div>
+    <div id="wrapper">
+        <app-picture-card *ngFor="let movie of movies" [movie]="movie"></app-picture-card>  
+    </div>
+  </div>
+
+  <app-my-lists></app-my-lists>
+
+</div>

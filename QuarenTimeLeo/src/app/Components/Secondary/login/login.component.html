@@ -1,0 +1,30 @@
+<div id="background"></div>
+
+<div id="title">
+  <p>Quarentime</p>
+  <p id="wasteTime">Waste time</p>
+ </div>
+
+
+<div class="login-page">
+  <div class="form"> 
+    <form class="login-form" ngNativeValidate [formGroup]="user" (ngSubmit)="login()">
+      <input type="text"  placeholder="Email" formControlName="email" required/>
+      <input type="password" placeholder="Password" formControlName="password" required/>
+      <label class="error"><b>{{errorMessage}}</b></label>
+      <button type="submit">login</button>
+      <p class="message" (click)="onSignup()" >Not registered? <a href="/register">Create an account</a></p> 
+      <p class="forget-Pass" routerLink="/resetpass" >Forgot your password?</p>
+    </form>
+  </div>
+</div>
+
+<form id="login-form" [formGroup]="user" (ngSubmit)="login()">
+  <input type="text" placeholder="Email" formControlName="email" required aria-label=""/>
+  <input type="password" placeholder="Password" formControlName="password" required aria-label=""/>
+  <label>{{errorMessage}}</label>
+  <button type="submit">login</button>
+  <p id="register" (click)="onSignup()">Not registered? <a routerLink="/register">Create an account</a></p>
+  <p id="forget-Pass" routerLink="/resetpass">Forgot your password?</p>
+</form>
+

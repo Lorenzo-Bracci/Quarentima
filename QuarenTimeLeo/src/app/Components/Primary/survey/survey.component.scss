@@ -1,0 +1,339 @@
+#topNavBar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  app-search-bar {
+    position: absolute;
+    top: 10px;
+    right: 0;
+  }
+
+  #title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-family: var(--primaryFont);
+    font-size: 2rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+
+    text-align: center;
+
+    p {
+      color: var(--text);
+    }
+
+    #wasteTime {
+      color: var(--accent);
+      font-size: 1rem;
+      font-family: var(--secondaryFont);
+    }
+  }
+}
+
+.instructions {
+  margin-top: 50px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+
+  width: 90%;
+  h1 {
+    color: var(--accent);
+    font-family: var(--primaryFont);
+  }
+  ul {
+    color: var(--text);
+    li p {
+      font-size: 1.5rem;
+      font-family: var(--secondaryFont);
+    }
+  }
+}
+
+.slider {
+  margin: 0 5%;
+  min-height: 500px;
+
+  display: flex;
+  justify-content: center;
+
+  #imageDesc {
+    display: flex;
+    img {
+      width: 250px;
+      height: 375px;
+      margin-top: 20px;
+    }
+
+    .slide-content {
+      width: 100%;
+      max-width: 500px;
+      color: var(--text);
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .slide-title {
+        color: var(--accent);
+        font-size: 1.8rem;
+        font-weight: 400;
+        letter-spacing: 0.1vw;
+        padding-bottom: 1.4vw;
+        font-family: var(--primaryFont);
+      }
+      .slide-desc {
+        height: 300px;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: var(--text);
+        font-family: var(--secondaryFont);
+        overflow-y: auto;
+      }
+      .slide-more {
+        font-weight: 400;
+        letter-spacing: 0.1vw;
+        float: left;
+        font-size: 0.9vw;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .arrows {
+    padding: 5px;
+    width: 40vw;
+    max-width: 250px;
+    min-width: 150px;
+    display: flex;
+    align-self: center;
+    margin: 20px 20px 20px 0;
+    justify-content: space-between;
+
+    .arrow {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border-top: 2px solid #fff;
+      border-left: 2px solid #fff;
+      transition: all 0.1s ease-in-out;
+      text-decoration: none;
+      color: transparent;
+      transform: rotate(135deg);
+
+      margin: 10px;
+
+      &:hover {
+        border-color: #0a8acb;
+        cursor: pointer;
+      }
+    }
+
+    .submit-button {
+      font-family: var(--secondaryFont);
+      text-transform: uppercase;
+      outline: 0;
+      background: var(--accent);
+      border-radius: 20px;
+      width: 120px;
+      height: 50px;
+      border: 0;
+      opacity: 1;
+      padding: 15px;
+      color: #ffffff;
+      font-size: 14px;
+      transition-property: background-color;
+      transition-duration: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--primary);
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+app-my-lists {
+  float: right;
+  z-index: 10;
+  position: absolute;
+  right: 1vw;
+  top: 6vh;
+}
+.myLists-Wrapper {
+  height: 80vh;
+  width: 30vw;
+  scrollbar-width: thin !important;
+  margin-top: 22px;
+  float: right;
+  right: 1vw;
+  z-index: 10;
+  position: absolute;
+  top: 14vh;
+
+  h2 {
+    font-family: var(--secondaryFont);
+    color: var(--accent);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .instructions {
+    h1 {
+      font-size: 1.5rem;
+    }
+    ul li p {
+      font-size: 1rem;
+    }
+  }
+  .myLists-Wrapper {
+    width: 50vw;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .slider {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .slider #imageDesc {
+    img {
+      width: 200px;
+      height: 300px;
+    }
+    .slide-content {
+      width: 80vw;
+    }
+    align-items: center;
+    flex-direction: column;
+  }
+  .myLists-Wrapper {
+    width: 80vw;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .instructions {
+    h1 {
+      font-size: 1.2rem;
+    }
+    ul li p {
+      font-size: .7rem;
+    }
+  }
+  .myLists-Wrapper {
+    width: 98vw;
+  }
+}
+
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input {
+  display: none;
+}
+.rating > label:before {
+  margin-right: 10px;
+  margin-top: 0;
+  font-size: 2rem;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+/* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+}
+
+/* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffd700;
+}
+
+a[data-tooltip] {
+  position: relative;
+}
+a[data-tooltip]::before,
+a[data-tooltip]::after {
+  position: absolute;
+  display: none;
+  opacity: 0.85;
+}
+a[data-tooltip]::before {
+  /*
+   * using data-tooltip instead of title so we
+   * don't have the real tooltip overlapping
+   */
+  content: attr(data-tooltip);
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 5px;
+  /* we don't want the text to wrap */
+  white-space: nowrap;
+  text-decoration: none;
+}
+a[data-tooltip]::after {
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  content: "";
+}
+
+a[data-tooltip]:hover::before,
+a[data-tooltip]:hover::after {
+  display: block;
+}
+
+/** positioning **/
+
+/* top tooltip */
+a[data-tooltip][data-placement="top"]::before {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 40px;
+}
+a[data-tooltip][data-placement="top"]::after {
+  border-top-color: #000;
+  border-bottom: none;
+  bottom: 50px;
+  left: 20px;
+  margin-bottom: 4px;
+}
+
+@media only screen and (max-width: 300px) {
+  .rating > label:before {
+    font-size: 1.5rem;
+  }
+}

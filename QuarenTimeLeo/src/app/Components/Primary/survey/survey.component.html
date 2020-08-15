@@ -1,0 +1,63 @@
+<app-top-nav-bar [hideButtons]="true" (searchInputChange)="emitInputChange($event)"></app-top-nav-bar>
+
+<div class="myLists-Wrapper" *ngIf="input != ''">
+    <h2 *ngIf="SearchResults.length == 0">No Results</h2>
+    <app-survey-search-movie [Option1]="true" [WatchedList]="SearchResults" (movieEvent)="receiveMovie($event)"></app-survey-search-movie>
+</div>
+
+<div class="instructions">
+  <h1>Instructions:</h1>
+  <ul>
+    <li>
+      <p>Our recommendation
+        algorithm requires you to rate at least 20 movies, for better recommendations we suggest that you rate
+        as much as you can.</p>
+    </li>
+    <li>
+      <p>Make sure to use the
+        skip arrow in case that you didn't see the movie.</p>
+    </li>
+    <li>
+      <p>If you are having trouble finding movies you have watched, use the search bar and rate some movies you like and others you don't.</p>
+    </li>
+  </ul>
+</div>
+
+<div class="slider">
+  <div id="imageDesc">
+    <img src="{{selectedMovie ? selectedMovie.poster : ''}}" alt="">
+    <div class="slide-content">
+      <div class="slide-title">{{selectedMovie ? selectedMovie.title : ''}}</div>
+      <div class="slide-desc" style="font-family: var(--secondaryFont);">{{selectedMovie ? selectedMovie.description : ''}}</div>
+      <div class="slide-more">
+        <fieldset class="rating" style="margin-left: 0; padding-left: 0;">
+          <input type="radio" id="star5" name="rating" value="5" (click)="setRating(5)" /><label
+          class="full" for="star5" title="Awesome - 5 stars"></label>
+          <input type="radio" id="star4half" name="rating" value="4 and a half"
+                 (click)="setRating(4.5)" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+          <input type="radio" id="star4" name="rating" value="4" (click)="setRating(4)" /><label
+          class="full" for="star4" title="Pretty good - 4 stars"></label>
+          <input type="radio" id="star3half" name="rating" value="3 and a half"
+                 (click)="setRating(3.5)" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+          <input type="radio" id="star3" name="rating" value="3" (click)="setRating(3)" /><label
+          class="full" for="star3" title="Meh - 3 stars"></label>
+          <input type="radio" id="star2half" name="rating" value="2 and a half"
+                 (click)="setRating(2.5)" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+          <input type="radio" id="star2" name="rating" value="2" (click)="setRating(2)" /><label
+          class="full" for="star2" title="Kinda bad - 2 stars"></label>
+          <input type="radio" id="star1half" name="rating" value="1 and a half"
+                 (click)="setRating(1.5)" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+          <input type="radio" id="star1" name="rating" value="1" (click)="setRating(1)" /><label
+          class="full" for="star1" title="Sucks big time - 1 star"></label>
+          <input type="radio" id="starhalf" name="rating" value="half" (click)="setRating(0.5)" /><label
+          class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrows">
+    <div title="Skip" class="arrow" (click)="nextMovie()"></div>
+    <button class="submit-button" (click)="onSubmitSurvey()">{{numberOfRatedMovies < 20 ? numberOfRatedMovies + '/20' : 'Submit'}}</button>
+  </div>
+</div>

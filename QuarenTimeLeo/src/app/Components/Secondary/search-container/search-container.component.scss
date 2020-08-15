@@ -1,0 +1,21 @@
+* {
+  background-color: #252525;
+}
+h2 {
+  margin-top: 10px;
+  text-align: center;
+  font-family: var(--primaryfont);
+  color: var(--text);
+  font-size: 1.8rem;
+}
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-color: #181c1f #252525 !important;
+  scrollbar-width: thin !important;
+  margin: 22px 25px 0 25px;
+}

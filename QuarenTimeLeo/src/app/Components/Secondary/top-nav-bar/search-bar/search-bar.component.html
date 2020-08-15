@@ -1,0 +1,4 @@
+<div class="container">
+  <input #searchBar type="text" placeholder="Search..." aria-label="" (keydown.enter)="onChange(searchBar.value)">
+  <div class="search" (click)="onChange('')"></div>
+</div>

@@ -1,0 +1,9 @@
+<ul id = "theWatchedList" *ngIf="isSelected">
+  <li [style.background]="'url('+movie.background+')'"
+      *ngFor="let movie of WatchedList" (click)="openMoviePage(movie)">
+    <img src="{{movie.poster}}" alt=""/>
+    <h3 style="font-family: var(--primaryFont);">{{movie.title}}</h3>
+    <p>{{movie.description}}</p>
+    <h3 style="font-family: var(--secondaryFont);">{{movie.rating}} </h3>
+  </li>
+</ul>

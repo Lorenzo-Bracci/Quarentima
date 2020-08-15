@@ -1,0 +1,40 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #252525;
+}
+
+* {
+  padding: 0;
+  outline: none;
+  border: 0;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+.myapp-no-padding-dialog .mat-dialog-container {
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #181c1f;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #252525;
+}

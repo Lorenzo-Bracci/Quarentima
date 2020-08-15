@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.top10Header {
+  background-color: var(--accent);
+  color: var(--text);
+  border-radius: 10px;
+  width: 28.5vw;
+  text-align: center;
+  box-shadow: 0 1px 5px 1px #000;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.top10wrapper {
+  display: grid;
+  border-color: #f0a3a3;
+  height: 75vh;
+  width: 28.5vw;
+  grid-template-columns: 98%;
+  background-color: #181C1F;
+  box-shadow: inset 0 0 20px #000;
+  border-radius: 10px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #181c1f #252525;
+}
+
+/*# sourceMappingURL=top-ten.component.css.map */

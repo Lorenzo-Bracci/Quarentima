@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "quarentime-1": {
+      "hosting": {
+        "QuarenTime": [
+          "quarentime-1"
+        ]
+      }
+    }
+  }
+}
