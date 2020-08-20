@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/test', {useMongoClient: true});
+mongoose.connect('mongodb://admin:tcomkleo@172.30.191.158:27017/sampledb', {useMongoClient: true});
 let db = mongoose.connection;
 let ObjectID = require('mongodb').ObjectID
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -579,7 +579,7 @@ app.get('/delete-topic', function(req, res, next){ //HERE I AM WRITING CODE TO D
 		console.log('Server started');
 		});*/
 
-/*var fs = require('fs');//code to add dataset
+var fs = require('fs');//code to add dataset
 var all = fs.readFileSync('array.txt', 'utf8');
 all = all.trim();  // final crlf in file
 let numbers = all.split(",").map(Number);
@@ -588,7 +588,7 @@ let numbers = all.split(",").map(Number);
 	 Dataset:numbers});
     db.collection("Resources").insert(user, function (err, results) {                                 //how to insert users into mongodb
         console.log("new data inserted");
-    });*/
+    });
 
     
    /*   var fs = require('fs');
