@@ -1,6 +1,9 @@
 import DatasetFunction from '../../../../assets/detaset';
 import { HttpClient } from '@angular/common/http';
 import { ɵINTERNAL_BROWSER_PLATFORM_PROVIDERS } from '@angular/platform-browser';
+import { Domain } from '../domain';
+import { Router } from '@angular/router';
+
 
 export abstract class Recommendation {
     static currentUserRatings = [];
@@ -10,7 +13,7 @@ export abstract class Recommendation {
 
 
     static initLengths() {
-        return fetch('http://localhost:3000/get-length').then(response => {
+        return fetch(Domain.url + 'get-length').then(response => {
             return response.json();
         })
     }
@@ -20,7 +23,7 @@ export abstract class Recommendation {
     static initUser(email: string) {
         var result: number[] = new Array(this.movieLength);
 
-        return fetch('http://localhost:3000/user/?email=' + email).then(res => {
+        return fetch(Domain.url + 'user/?email=' + email).then(res => {
             return res.json();
         }).then(user => {
             result[0] = user.email;
@@ -54,13 +57,13 @@ export abstract class Recommendation {
         }
 
 
-        return fetch('http://localhost:3000/get-users')
+        return fetch(Domain.url + 'get-users')
             .then(response => {
                 return response.json();
             }).then((emails) => {
                 emails.forEach(element => {
                     if (element != email) {
-                        fetch('http://localhost:3000/user/?email=' + element).then(res => {
+                        fetch(Domain.url + 'user/?email=' + element).then(res => {
                             return res.json();
                         }).then((user) => {
                             ratingMatrix[position][0] = user.email;
@@ -495,6 +498,7 @@ export abstract class Recommendation {
                             .map(x => translation[x]);
 
                         console.log(recommendedmovies);
+                        
                         this.storeRecommendation(email, recommendedmovies);
                     })
                 });
@@ -506,12 +510,12 @@ export abstract class Recommendation {
 
    static initTranslationArray(){
 
-    return fetch('http://localhost:3000/translation').then((response) => {
+    return fetch(Domain.url + 'translation').then((response) => {
         return response.json();
     });
     }
     static storeRecommendation(email: string, recommendations: number[]) {
-    fetch('http://localhost:3000/store-recommendation', {
+    fetch(Domain.url + 'store-recommendation', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -554,14 +558,14 @@ export abstract class Recommendation {
 
   static getUsers() {
     let array = [];
-    fetch('http://localhost:3000/get-users')
+    fetch(Domain.url + 'get-users')
         .then(response => {
             return response.json();
         }).then((emails) => {
             array = emails;
             console.log(array.length);
             for (var i = 0; i < emails.length; i++) {
-                fetch('http://localhost:3000/user/?email=' + emails[i]).then(res => {
+                fetch(Domain.url + 'user/?email=' + emails[i]).then(res => {
                     return res.json();
                 }).then(user => {
                     console.log(user);

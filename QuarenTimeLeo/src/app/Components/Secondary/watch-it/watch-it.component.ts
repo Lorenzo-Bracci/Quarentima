@@ -7,6 +7,7 @@ import { MovieAPI } from '../../Class/MovieAPI/movie-api';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from 'firebase';
+import { Domain } from '../../Class/domain';
 
 @Component({
   selector: 'app-watch-it',
@@ -29,7 +30,7 @@ export class WatchItComponent implements OnInit {
 
   ngOnInit(): void {
   var ids = [];
-        fetch('http://localhost:3000/load-list?email=' + this.user.email)
+        fetch(Domain.url + 'load-list?email=' + this.user.email)
             .then(function (response) {
             console.log("Hello");
             return response.json();

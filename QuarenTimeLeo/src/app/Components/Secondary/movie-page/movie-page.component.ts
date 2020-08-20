@@ -5,6 +5,7 @@ import { Movie } from '../../Class/Movie/movie';
 import { MovieAPI } from '../../Class/MovieAPI/movie-api';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Domain } from '../../Class/domain';
 
 @Component({
   selector: 'app-movie-page',
@@ -47,7 +48,8 @@ userEmail: string;
   done = false;
 
   moveTheLists(){
-  fetch('http://localhost:3000/load-list?email=' + this.userEmail)
+    
+  fetch(Domain.url + 'load-list?email=' + this.userEmail)
             .then(function (response) {
             return response.json();
         }).then(userData => {
@@ -57,8 +59,10 @@ userEmail: string;
             const color = list.color;
             const title = list.title;
             const movieIDs = list.movieIDs;
+           // console.log(title)
             this.topics.push({ color, title, movieIDs });
-          });
+          }
+          );
           });
         
         
@@ -90,7 +94,8 @@ userEmail: string;
     }
     if (!this.topics[topicIndex].movieIDs.includes(this.data.id)){
       this.topics[topicIndex].movieIDs.push(this.data.id);
-      fetch('http://localhost:3000//add-movie-to-topic?email=' + this.userEmail + '&index=' + topicIndex + '&movieID=' + this.data.id);
+      fetch(Domain.url + 'add-movie-to-topic?email=' + this.userEmail + '&index=' + topicIndex + '&movieID=' + this.data.id).then(response => {
+      }).catch(err => console.log(err));
       
       //this.db.collection('users').doc(this.userId).update({
       //lists: this.topics
@@ -101,6 +106,24 @@ userEmail: string;
   }
 
   setRating(rating: number) {
-   console.log("You rated : " + rating)
+    fetch(Domain.url + 'rate-movie', {
+      method: 'POST',
+      headers: {
+         // 'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: this.userEmail, rating: rating, movie: this.data.id})
+  }).then((response) => {
+     return response.json();
+  }).then((data) => {
+    console.log(Number(data));
+    if(Number(data) > 9){
+      fetch(Domain.url + 'compute-recommendation?email=' + this.userEmail).then((e) => {
+        console.log("Recomendations recieved");
+      }).catch((err) => {
+        console.log(err);
+      }); 
+    }
+});
   }
 }

@@ -32,6 +32,11 @@ import { SearchContainerComponent } from './Components/Secondary/search-containe
 import { SurveyComponent } from './Components/Primary/survey/survey.component';
 import { StarsComponent } from './Components/Secondary/stars/stars.component';
 import { SurveySearchMovieComponent } from './Components/Primary/survey/survey-search-movie/survey-search-movie.component';
+import { TrialpageComponent } from './Components/Secondary/trialpage/trialpage.component';
+import { TrialNavButtonsComponent } from './Components/Secondary/trial-nav-buttons/trial-nav-buttons.component';
+import { TrialButtonsComponent } from './Components/Secondary/trial-nav-buttons/trial-buttons/trial-buttons.component';
+import { TrialMoviePageComponent } from './Components/Secondary/trial-movie-page/trial-movie-page.component';
+import { TrialPictureCardComponent } from './Components/Secondary/trial-picture-card/trial-picture-card.component';
 
 const routes = [
   {path: '', component: StartpageComponent},
@@ -41,6 +46,7 @@ const routes = [
   {path: 'resetpass', component: RestorepasswordComponent},
   {path: 'poll', canActivate: [LoggedInGuard], component: SurveyComponent},
   {path: 'mainpage', canActivate: [LoggedInGuard], component: MainPageComponent},
+  {path: 'trialpage', canActivate: [LoggedInGuard], component: TrialpageComponent},
   {path: 'profile', canActivate: [LoggedInGuard], component: ProfileComponent},
   {path: '**',   redirectTo: '', pathMatch: 'full' }
 ];
@@ -71,7 +77,12 @@ const routes = [
     SearchContainerComponent,
     SurveyComponent,
     StarsComponent,
-    SurveySearchMovieComponent
+    SurveySearchMovieComponent,
+    TrialpageComponent,
+    TrialNavButtonsComponent,
+    TrialButtonsComponent,
+    TrialMoviePageComponent,
+    TrialPictureCardComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

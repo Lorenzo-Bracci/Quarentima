@@ -1,0 +1,32 @@
+<app-trial-nav-buttons (searchInputChange)="updateInput($event)"></app-trial-nav-buttons>
+<div class="instructions">
+    <h1>Information:</h1>
+    <ul>
+      <li>
+        <p>This is the recommender trial mode and you therefore do not have access to a profile
+            that you can edit by rating new movies and save you favourite ones (in order to do this 
+            you should register).
+        </p>
+      </li>
+      <li>
+        <p>With the leftmost double array button you will randomly generate a movie between the ones that the reommender system has computed 
+            for you.</p>
+      </li>
+      <li>
+        <p>With the rightmost button you will be redirected to the main page where you will be able to register an account or retry the 
+            reccomendation system.</p>
+      </li>
+    </ul>
+  </div>
+<div id="mainContent">
+<!--    <app-watch-it></app-watch-it>-->
+  <div id="watchme-container">
+    <div id="watchmeMenu">
+      <div id="title">Recommended Movies</div>
+    </div>
+    <div id="wrapper">
+        <app-trial-picture-card *ngFor="let movie of movies" [movie]="movie"></app-trial-picture-card>  
+    </div>
+  </div>
+
+</div>

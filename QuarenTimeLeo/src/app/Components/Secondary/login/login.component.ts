@@ -3,9 +3,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import { Domain } from '../../Class/domain';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +27,10 @@ export class LoginComponent {
   login(): void {
     this.errorMessage = '';
     const actaulRouter = this.router;
-    const eml = this.user.get('email').value;
-    const psd = this.user.get('password').value;
+    var eml = this.user.get('email').value;
+    var psd = this.user.get('password').value;
+   // eml = "bracellona98@hotmail.com";//only to speed up testing
+    //psd = "isabelle99";//only to speed up testing
     // The persistency login is not working properly.
     // please check ========> https://firebase.google.com/docs/auth/web/auth-state-persistence
 
@@ -36,12 +38,14 @@ export class LoginComponent {
       .then( () => {
         return firebase.auth().signInWithEmailAndPassword(eml, psd).then((credential) => {
          // if (credential.user.emailVerified) {
-            fetch('http://localhost:3000/load-list/?email=' + eml).then(function (response) {
+            fetch(Domain.url + 'load-list/?email=' + eml).then(function (response) {
             return response.json();
         }).then(function (data) {
+         // console.log(data)
                 if (data.takenSurvey) {
                   actaulRouter.navigate([`/mainpage`]);
                 } else {
+                  console.log("hello")
                   actaulRouter.navigate([`/poll`]);
                 }
               });

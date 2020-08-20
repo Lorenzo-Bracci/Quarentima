@@ -4,6 +4,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MovieAPI } from '../../Class/MovieAPI/movie-api';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Domain } from '../../Class/domain';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -147,49 +149,76 @@ export class ProfileComponent {
   disabledSendButton = false;
 
   constructor(
+    private router: Router,
     private auth: AngularFireAuth,
     private db: AngularFirestore) {
     auth.currentUser.then(value => {
       if (value) {
         this.user.fireUser = value;
+      //  this.user.name = value.displayName;
         this.user.email = value.email;
         this.loadLists();
+      }else{
+      this.router.navigate([``]);
       }
     });
   }
 
   addTopic() {
     this.topics.push({ color: this.colors[4], title: 'My List', movieIDs: []});
-    this.db.collection('users').doc(this.user.fireUser.uid).update({
+  
+    fetch(Domain.url + "add-topic?email=" + this.user.email)
+    .then(response => {
+    }).catch(err => console.log(err));
+
+  /*  this.db.collection('users').doc(this.user.fireUser.uid).update({
       lists: this.topics
     });
+*/
   }
 
   removeTopic(index) {
     this.topics.splice(index, 1);
     this.selectedTopic = -1;
-    this.db.collection('users').doc(this.user.fireUser.uid).update({
+   
+    fetch(Domain.url + "delete-topic?email=" + this.user.email + "&index=" + index)
+    .then(response => {
+    }).catch(err => console.log(err));
+
+    /*this.db.collection('users').doc(this.user.fireUser.uid).update({
       lists: this.topics
-    });
+    });*/
   }
+
   updateTopic(event, index) {
     this.topics[index].title = event.title;
     this.topics[index].color = event.color;
-    this.db.collection('users').doc(this.user.fireUser.uid).update({
+    fetch(Domain.url + "update-topic?email=" + this.user.email + "&index=" + index + "&color=" + encodeURIComponent(event.color) + "&title=" + encodeURIComponent(event.title))
+    .then(response => {
+    }).catch(err => console.log(err));
+    
+    /*this.db.collection('users').doc(this.user.fireUser.uid).update({
       lists: this.topics
-    });
+    });*/
+
   }
 
-  deleteMovieFromList(index) {
+  deleteMovieFromList(index, topic) {
     this.movies.splice(index, 1);
+    const movieID =  this.topics[this.selectedTopic].movieIDs[index];
     this.topics[this.selectedTopic].movieIDs.splice(index, 1);
-
-    this.db.collection('users')
+//console.log(index)
+    fetch(Domain.url + "delete-movie-from-topic?email=" + this.user.email + "&index=" + topic + "&movieID=" + movieID)
+    .then(response => {
+    }).catch(err => console.log(err));
+  
+  /*  this.db.collection('users')
       .doc(this.user.fireUser.uid)
       .update({
         lists: this.topics
-      });
-  }
+      });*/
+  
+    }
 
 
   clickedTopic(index) {
@@ -211,7 +240,23 @@ export class ProfileComponent {
   }
 
   loadLists() {
-    this.db.collection('users')
+    fetch(Domain.url + "load-list?email=" + this.user.email)
+        .then(response => {
+            return response.json();
+        }).then(response => {// add avatar and lists
+         // console.log("this worked")
+          this.user.avatar = String.fromCodePoint(response.icon);
+          this.user.name = response.username;
+          const lists = response.topic;
+        this.topics = [];
+        lists.forEach(list => {
+          const color = list.color;
+          const title = list.title;
+          const movieIDs = list.movieIDs;
+          this.topics.push({ color, title, movieIDs });
+        });
+      }).catch(err => console.log(err));
+   /* this.db.collection('users')
       .doc(this.user.fireUser.uid)
       .get().subscribe(next => {
         this.user.avatar = String.fromCodePoint(next.data().icon);
@@ -224,7 +269,7 @@ export class ProfileComponent {
           const movieIDs = list.movieIDs;
           this.topics.push({ color, title, movieIDs });
         });
-      });
+      });*/
   }
 
   sendPassResetEmail() {
@@ -242,35 +287,36 @@ export class ProfileComponent {
       });
       this.resetPassword = !this.resetPassword; 
   }
+
+
   selectEmoji(emojiIndex: number) {
     this.selectedEmoji = emojiIndex;
     this.user.avatar = this.emojis[emojiIndex];
   }
+
+
   submitChanges() {
     const saveusername = this.User.get('username').value;
     this.editing = false;
 
     if (saveusername) {
+
+      fetch(Domain.url + "update-username?email=" + this.user.email + "&username=" + encodeURIComponent(saveusername))
+      .then(response => {
+      }).catch(err => console.log(err));
+
       if (this.selectedEmoji) {
-        this.db.collection('users')
-          .doc(this.user.fireUser.uid)
-          .update({
-            icon: this.emojiIDs[this.selectedEmoji],
-            username: saveusername
-          });
+        fetch(Domain.url + "update-icon?email=" + this.user.email + "&icon=" + encodeURIComponent(this.emojiIDs[this.selectedEmoji]))
+    .then(response => {
+    }).catch(err => console.log(err));
+        
       }
-      this.db.collection('users')
-        .doc(this.user.fireUser.uid)
-        .update({
-          username: saveusername
-        });
+      
       this.user.name = saveusername;
     } else if (this.selectedEmoji && !saveusername) {
-      this.db.collection('users')
-        .doc(this.user.fireUser.uid)
-        .update({
-          icon: this.emojiIDs[this.selectedEmoji]
-        });
+        fetch(Domain.url + "update-icon?email=" + this.user.email + "&icon=" + encodeURIComponent(this.emojiIDs[this.selectedEmoji]))
+    .then(response => {
+    }).catch(err => console.log(err));
     }
 
   }

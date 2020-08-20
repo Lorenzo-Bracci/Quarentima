@@ -1,0 +1,410 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+.mat-dialog-container {
+  padding: 0px !important;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #43423e;
+}
+
+a {
+  text-decoration: none;
+  color: #5c7fb8;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.movie-card {
+  font: 14px/22px "Source Sans Pro", sans-serif;
+  color: gray;
+  padding: 0 0;
+}
+
+.container {
+  margin: 0 auto;
+  width: 780px;
+  height: 640px;
+  background: #f0f0ed;
+  border-radius: 5px;
+  position: relative;
+
+}
+
+.hero {
+  height: 342px;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+
+  .circle:hover {
+    color: var(--accent);
+    i {
+      font-size: 2.3rem !important;
+    }
+  }
+  .circle {
+    color: var(--accent);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    transition: opacity 300ms;
+    i {
+      width: 50px !important;
+      height: 50px !important;
+      font-size: 2rem !important;
+    }
+  }
+  p {
+    color: var(--accent);
+    position: absolute;
+    right: 65px;
+    bottom: 25px;
+    // width: 50px !important;
+    // height: 50px !important;
+    font-size: 1rem !important;
+  }
+}
+
+.hero:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  transform: skewY(-2.2deg);
+  transform-origin: 0 0;
+
+  //chrome antialias fix
+  backface-visibility: hidden;
+}
+
+.cover {
+  display: block;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 160px;
+  left: 40px;
+  z-index: 2;
+  visibility: visible;
+}
+
+img.cover {
+  max-width: 190px;
+  max-height: 280px;
+}
+#play-icon {
+  position: absolute;
+  z-index: 5;
+  top: 230px;
+  left: 45px;
+  opacity: 0.3;
+  transition-duration: 1s;
+  transition-property: opacity;
+}
+#play-icon:hover {
+  opacity: 1;
+}
+
+img.cover:hover {
+  max-width: 190px;
+  max-height: 280px;
+}
+
+.details {
+  padding: 190px 0 0 280px;
+
+  .title1 {
+    color: white;
+    font-size: 44px;
+    margin-bottom: 13px;
+    position: relative;
+    line-height: 2.4rem;
+
+    span {
+      position: absolute;
+      top: 3px;
+      margin-left: 12px;
+      background: #c4af3d;
+      border-radius: 5px;
+      color: #544c21;
+      font-size: 14px;
+      padding: 0px 4px;
+    }
+  }
+
+  .title2 {
+    color: #c7c1ba;
+    font-size: 23px;
+    font-weight: 300;
+    margin-bottom: 15px;
+  }
+
+  
+}
+
+.description {
+  bottom: 0px;
+  height: 200px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #252525;
+}
+
+.column1 {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 50px;
+  margin-top: 120px;
+  width: 200px;
+  float: left;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tag {
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-right: 4px;
+  line-height: 20px;
+  cursor: default;
+}
+
+.tag:hover {
+  background: #b9b7b7;
+}
+
+.column2 {
+  padding-top: 10px;
+  margin-left: 20px;
+  width: 480px;
+  max-height: 250px;
+  overflow-y: auto;
+  float: left;
+}
+
+.avatars {
+  margin-top: 23px;
+
+  img {
+    cursor: pointer;
+  }
+
+  img:hover {
+    opacity: 0.6;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+
+
+
+
+
+
+a[data-tooltip] {
+  position: relative;
+}
+a[data-tooltip]::before,
+a[data-tooltip]::after {
+  position: absolute;
+  display: none;
+  opacity: 0.85;
+}
+a[data-tooltip]::before {
+  /*
+   * using data-tooltip instead of title so we
+   * don't have the real tooltip overlapping
+   */
+  content: attr(data-tooltip);
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 5px;
+  /* we don't want the text to wrap */
+  white-space: nowrap;
+  text-decoration: none;
+}
+a[data-tooltip]::after {
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  content: "";
+}
+
+a[data-tooltip]:hover::before,
+a[data-tooltip]:hover::after {
+  display: block;
+}
+
+/** positioning **/
+
+/* top tooltip */
+a[data-tooltip][data-placement="top"]::before {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 40px;
+}
+a[data-tooltip][data-placement="top"]::after {
+  border-top-color: #000;
+  border-bottom: none;
+  bottom: 50px;
+  left: 20px;
+  margin-bottom: 4px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    
+  }
+  .column2 {
+    width: 300px;
+    p {
+      height: 200px;
+      overflow-y: auto;
+    }
+  }
+  .description {
+    font-size: 1.5vw;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    
+  }
+  .column2 {
+    width: 300px;
+    p {
+      height: 200px;
+      overflow-y: auto;
+    }
+  }
+  .description {
+    font-size: 2vw;
+  }
+  .details {
+   
+    .title1{
+      font-size: 3vw;
+    }
+  }
+}
+@media only screen and (max-width: 720px) {
+  .cover {
+    top: 7vh;
+    left: 2vw;
+  }
+  #play-icon {
+    width: 20vw;
+    height: 20vh;
+    top: 12vh;
+    left: 3vw;
+    opacity: 0.5;
+  }
+  .details {
+    padding: 24vh 0 0 30vw;
+    .title1{
+      font-size: 3.5vw;
+    }
+  }
+  img.cover {
+    max-width: 26vw;
+    max-height: 40vh;
+  }
+  img.cover:hover {
+    max-width: 26vw;
+    max-height: 40vh;
+  }
+  .column1 {
+    margin-left: 3vw;
+    margin-top: 2vh;
+  }
+  .description {
+    font-size: 2.5vw;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    
+  }
+  .hero{
+    height: 200px;
+    .circle{
+      right: -20px;
+      bottom: -20px;
+    }
+  }
+  .cover {
+    top: 7vh;
+    left: 2vw;
+  }
+  #play-icon {
+    width: 20vw;
+    height: 20vh;
+    top: 12vh;
+    left: 3vw;
+    opacity: 0.5;
+  }
+  .details {
+    padding: 10vh 0 0 30vw;
+   
+    .title1{
+      font-size: 5vw;
+      line-height: 2.4vh;
+    }
+  }
+  img.cover {
+    max-width: 26vw;
+    max-height: 40vh;
+  }
+  img.cover:hover {
+    max-width: 26vw;
+    max-height: 40vh;
+  }
+  .column1 {
+    margin-left: 3vw;
+    margin-top: 2vh;
+  }
+  .column2{
+    width: 88%;
+  }
+  .description {
+    font-size: 4vw;
+  }
+  
+}
+@media only screen and (max-width: 400px) {
+}

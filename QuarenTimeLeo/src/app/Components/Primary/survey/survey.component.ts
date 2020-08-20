@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Recommendation } from '../../Class/recommendation/recommendation';
 import { Hashfunction } from '../../Class/hashfunction/hashfunction';
+import { Domain } from '../../Class/domain';
 
 @Component({
   selector: 'app-survey',
@@ -56,10 +57,14 @@ export class SurveyComponent implements OnInit {
     private db: AngularFirestore,
     private auth: AngularFireAuth) {
     auth.currentUser.then(value => {
+      if(value){
       this.user.fireUser = value;
-      this.user.name = value.displayName;
+      //this.user.name = value.displayName;
       this.user.email = value.email;
       this.userId = value.uid;
+      }else{
+        this.router.navigate([``]);
+      }
     });
   }
   userId: string;
@@ -108,14 +113,16 @@ export class SurveyComponent implements OnInit {
       });
   }
 
+
+
   onSubmitSurvey() {
-    if (this.numberOfRatedMovies >= 20) {
-      this.router.navigate([`/mainpage`]);
+    if (this.numberOfRatedMovies >= 10) {
+      //else{
       this.average = (this.SumOfRatings / this.numberOfRatedMovies);
       var user = {email: this.userEmail, average: this.average, ratings: this.userArray};
       
       
-      fetch('http://localhost:3000/user-add', { 
+      fetch(Domain.url + 'user-add', { 
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json'
@@ -124,26 +131,30 @@ export class SurveyComponent implements OnInit {
       })  
       .then(response => {
         return response.json();}).then((res) => {
-         Recommendation.recommend(this.userEmail);  
-         console.log(res);})
-      .catch((err) => {
+ //const result = Recommendation.recommend(this.userEmail);
+ if(this.userEmail == "quarentimetcomk@hotmail.com"){ //trial user
+  fetch(Domain.url + 'compute-recommendation?email=' + this.userEmail + "&realUser=false").then((e) => {
+    console.log("Recomendations recieved");
+    this.router.navigate([`/trialpage`]);
+  });    
+ }else{
+ fetch(Domain.url + 'compute-recommendation?email=' + this.userEmail + "&realUser=true").then((e) => {
+  console.log("Recomendations recieved");
+  this.router.navigate([`/mainpage`]);
+});   
+         //console.log(res);
+}
+        })
+         .catch((err) => {
         console.log(err);
       });
 
-
-
-      //this.userRatings[1] = (this.SumOfRatings / this.numberOfRatedMovies);
-      
-    /*  this.db.collection('users')
-        .doc(this.userId)
-        .update({
-          takenSurvey: true,
-          recommendations: this.recomendedMovies
-        });*/
+    //}
     }
   }
+
   storeRecommendation(email: string, recommendations: number[]) {
-    fetch('http://localhost:3000/store-recommendation', {
+    fetch(Domain.url + 'store-recommendation', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -174,7 +185,7 @@ export class SurveyComponent implements OnInit {
     initTranslationArray(){
 
    
-     return fetch('http://localhost:3000/translation').then((response) => {
+     return fetch(Domain.url + 'translation').then((response) => {
      console.log("hello");
       return response.json();});
     }

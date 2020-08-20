@@ -10,7 +10,7 @@
   <ul>
     <li>
       <p>Our recommendation
-        algorithm requires you to rate at least 20 movies, for better recommendations we suggest that you rate
+        algorithm requires you to rate at least 10 movies, for better recommendations we suggest that you rate
         as much as you can.</p>
     </li>
     <li>
@@ -58,6 +58,6 @@
 
   <div class="arrows">
     <div title="Skip" class="arrow" (click)="nextMovie()"></div>
-    <button class="submit-button" (click)="onSubmitSurvey()">{{numberOfRatedMovies < 20 ? numberOfRatedMovies + '/20' : 'Submit'}}</button>
+    <button class="submit-button" (click)="onSubmitSurvey()">{{numberOfRatedMovies < 10 ? numberOfRatedMovies + '/10' : 'Submit'}}</button>
   </div>
 </div>

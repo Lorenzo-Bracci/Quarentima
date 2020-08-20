@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Domain } from '../../Class/domain';
 
 @Component({
   selector: 'app-registration',
@@ -34,7 +35,7 @@ export class RegistrationComponent {
     } else if (this.user.get('password').value === this.user.get('repeat').value) { // check for custom made response input error
       this.auth.createUserWithEmailAndPassword(this.user.get('email').value, this.user.get('password').value)
         .then((credential) => {
-      fetch('http://localhost:3000/init-user/?email=' + personalEmail).then(() => {
+      fetch(Domain.url + 'init-user/?email=' + personalEmail + "&username=" + saveusername).then(() => {
               this.auth.signOut();
               credential.user.updateProfile({displayName: saveusername})
               .then(() => {

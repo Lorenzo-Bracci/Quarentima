@@ -1,0 +1,83 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  
+    height: 120px;
+  }
+  #title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    font-family: var(--primaryFont);
+    font-size: 2rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+  
+    text-align: center;
+  
+    grid-area: title;
+  
+    p {
+      color: var(--text);
+    }
+  
+    #wasteTime {
+      color: var(--accent);
+      font-size: 1rem;
+      font-family: var(--secondaryFont);
+    }
+  }
+  
+  #controlContainer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+  
+    grid-area: control;
+  }
+  
+  app-nav-buttons {
+    margin-left: 2rem;
+  }
+  
+  @media only screen and (max-width: 1100px) {
+    app-search-bar {
+      width: 200px;
+      height: 80px;
+    }
+  }
+  
+  @media only screen and (max-width: 900px) {
+    #title {
+      font-size: 1.4rem;
+  
+      #waste-time {
+        font-size: .3rem;
+      }
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    :host {
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      grid-template-areas: 'title' 'control';
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    #controlContainer {
+      flex-direction: column;
+      margin-top: 60px;
+      app-nav-buttons {
+        margin-right: 40px;
+      }
+    }
+  }
+  

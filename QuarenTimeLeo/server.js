@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 let fs = require('fs');
-let all = fs.readFileSync('C://Users//anasa//Documents//Network and Communication//task1//FinalMovieDataset.txt', "utf8");
+//let all = fs.readFileSync('C://Users//anasa//Documents//Network and Communication//task1//FinalMovieDataset.txt', "utf8");
 let router = express.Router();
 
 mongoose.connect('mongodb://localhost:27017/test');

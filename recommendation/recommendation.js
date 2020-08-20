@@ -5,12 +5,12 @@ exports.Recommendation = void 0;
 var Recommendation = /** @class */ (function () {
     function Recommendation() {
     }
-    Recommendation.initLengths = function () {
+   /* Recommendation.initLengths = function () {
         return fetch('http://localhost:3000/get-length').then(function (response) {
             return response.json();
         });
-    };
-    Recommendation.initUser = function (email) {
+    };*/
+    /*Recommendation.initUser = function (email) {
         var _this = this;
         var result = new Array(this.movieLength);
         return fetch('http://localhost:3000/user/?email=' + email).then(function (res) {
@@ -23,7 +23,7 @@ var Recommendation = /** @class */ (function () {
                 result[j] = ratings[j - 2]; //the ratings array is shifted by two because it does not have email and average
             return result;
         });
-    };
+    };*/
     Recommendation.adjustMovieArray = function (arr) {
         var result = new Array(this.movieLength - 2); //initialize an array for storing only movie ratings
         for (var i = 0; i < result.length; i++) //fill the array with zeros
@@ -33,7 +33,7 @@ var Recommendation = /** @class */ (function () {
         }
         return result;
     };
-    Recommendation.createMatrix = function (email) {
+  /*  Recommendation.createMatrix = function (email) {
         var _this = this;
         var position = 0;
         var ratingMatrix = [];
@@ -63,7 +63,7 @@ var Recommendation = /** @class */ (function () {
             return ratingMatrix;
         });
         
-    };
+    };*/
     
     Recommendation.simple_avg = function (vector) {
         var acc = 0;
@@ -110,6 +110,8 @@ var Recommendation = /** @class */ (function () {
             var vec = vector1_1[_i];
             res += (vec * vec);
         }
+       // console.log("last line " + res)
+       // console.log(Math.sqrt(res))
         return Math.sqrt(res);
     };
     Recommendation.pearson_similarity = function (vector1, vector2) {
@@ -124,6 +126,8 @@ var Recommendation = /** @class */ (function () {
         var pearson_vector1 = new Array(this.movieLength - 2);
         var pearson_vector2 = new Array(this.movieLength - 2);
         for (var i = 2; i < this.movieLength; i++) {
+           // console.log("vector1" + vector1[i])
+           // console.log("vector2" + vector2[i])
             if (vector1[i] !== 0) {
                 pearson_vector1[i - 2] = vector1[i] - vector1_Avg;
                 // Changing the vectors to vector-average
@@ -141,12 +145,20 @@ var Recommendation = /** @class */ (function () {
                 commonMovies++;
             }
         }
+        var length1 = this.vector_length(pearson_vector1)
+var length2 = this.vector_length(pearson_vector2);
+var num = length1 * length2;
+        if((length1 == 0) || (length2 == 0))//special case with 0 ratings
+        num = 1;
 
         var dot = this.dot(pearson_vector1, pearson_vector2);
-        var num = this.vector_length(pearson_vector1) * this.vector_length(pearson_vector2);
-        if (commonMovies < 6) {
-            return 0;
+       // console.log( this.vector_length(pearson_vector2))
+        if (commonMovies > 4) {//make sure that if there are many common movies that is gonna count more
+            return (dot / num) + 0.5;
         }
+
+
+
         return (dot / num);
     };
     Recommendation.scorePrediction = function (vector, weights, usersAvg, currentUserAvg) {
@@ -248,12 +260,12 @@ _this.initTranslationArray().then(function (res) {
             });
         });
     };
-    Recommendation.initTranslationArray = function () {
+   /* Recommendation.initTranslationArray = function () {
         return fetch('http://localhost:3000/translation').then(function (response) {
             return response.json();
         });
-    };
-    Recommendation.storeRecommendation = function (email, recommendations) {
+    };*/
+    /*Recommendation.storeRecommendation = function (email, recommendations) {
         fetch('http://localhost:3000/store-recommendation', {
             method: 'POST',
             headers: {
@@ -264,7 +276,7 @@ _this.initTranslationArray().then(function (res) {
         }).then(function (e) {
             console.log(e);
         });
-    };
+    };*/
     Recommendation.transpose = function (array) {
         var transArray = new Array(this.movieLength);
         for (var i = 0; i < this.movieLength; i++) {
@@ -284,7 +296,7 @@ _this.initTranslationArray().then(function (res) {
       });
       console.log(this.Matrix);
     }*/
-    Recommendation.getUsers = function () {
+    /*Recommendation.getUsers = function () {
         var array = [];
         fetch('http://localhost:3000/get-users')
             .then(function (response) {
@@ -300,7 +312,7 @@ _this.initTranslationArray().then(function (res) {
                 });
             }
         });
-    };
+    };*/
     Recommendation.currentUserRatings = [];
     Recommendation.userLength = 0; //server user length and movie length
     Recommendation.movieLength = 0;

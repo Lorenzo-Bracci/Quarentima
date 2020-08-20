@@ -1,0 +1,7 @@
+<div id="title">
+    <p>Quarentime</p>
+    <p id="wasteTime">Waste time</p>
+  </div>
+  <div id="controlContainer" [style.justify-content]="hideButtons ? 'flex-end' : 'space-between'">
+    <app-trial-buttons *ngIf="!hideButtons" ></app-trial-buttons>
+  </div>

@@ -106,7 +106,7 @@
       *ngIf="movies.length > 0 && selectedTopic != -1"
       [style.border-color]="selectedTopic != -1 ? topics[selectedTopic].color : 'white'">
       <app-picture-card *ngFor="let movie of movies; let i = index" [movie]="movie" [immutable]="false"
-        (delete)="deleteMovieFromList(i)">
+        (delete)="deleteMovieFromList(i, selectedTopic)">
       </app-picture-card>
     </div>
   </div>
