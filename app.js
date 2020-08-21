@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/test', {useMongoClient: true});
+mongoose.connect('mongodb://admin:tcomkleo@172.30.191.158:27017/sampledb', {useMongoClient: true});
 ////admin:tcomkleo@172.30.191.158:27017
 let db = mongoose.connection;
 let ObjectID = require('mongodb').ObjectID
