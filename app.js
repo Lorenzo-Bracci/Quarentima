@@ -10,7 +10,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://admin:tcomkleo@172.30.191.158:27017/sampledb', {useMongoClient: true});
+mongoose.connect('mongodb://localhost:27017/test', {useMongoClient: true});
+////admin:tcomkleo@172.30.191.158:27017
 let db = mongoose.connection;
 let ObjectID = require('mongodb').ObjectID
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -59,9 +60,9 @@ app.use(express.static(__dirname + '/QuarenTimeLeo/dist/QuarenTime'));
 
 
 
-app.get('/*', (req,res) => { 
-  res.sendFile(path.join(__dirname));
-  //res.send("hello");
+app.get('/', (req,res) => { 
+ // res.sendFile(path.join(__dirname));
+  res.send("hello");
 //console.log("hello")
 });
 
@@ -88,7 +89,7 @@ app.get('/user', function(req,res,next) {
 })
 
 
-app.post('/user-add', function(req,res) {
+app.post('/use-addr', function(req,res) {
    // console.log(req.body);
      let user =  new UserRatings({email: req.body.email, average: req.body.average, ratings: req.body.ratings,newratings: 0});
      db.collection("Resources").findOne({Type: 'movies'}).then(elem => {
@@ -579,8 +580,101 @@ app.get('/delete-topic', function(req, res, next){ //HERE I AM WRITING CODE TO D
 		console.log('Server started');
 		});*/
 
-/*var fs = require('fs');//code to add dataset
-var all = fs.readFileSync('array.txt', 'utf8');
+var fs = require('fs');//code to add dataset
+
+app.get('/init-resources', function(req, res){
+  
+  mongoose.connection.db.listCollections().toArray(function(err, names){
+    if(err){
+      console.log(err)
+    }else{
+      var insertData = true;
+      for(var i = 0; i < names.length; i++){
+       // console.log(names[i].name)
+        if(names[i].name == "Resources"){
+      insertData = false; 
+        }
+      }
+      if(insertData){
+        var all = fs.readFileSync('array.txt', 'utf8');
+        all = all.trim();  // final crlf in file
+        let numbers = all.split(",").map(Number);
+        
+         let user =  new Resources({MoviesLength:9742, UsersLength:610, Type:'movies', 
+           Dataset:numbers});
+            db.collection("Resources").insert(user, function (err, results) {                                 //how to insert users into mongodb
+                console.log("new data inserted");
+            });
+      }
+    }
+    res.send("resources is now in the database")
+  })
+
+
+	});
+
+
+  app.get('/init-user-ratings', function(req, res){
+  
+    mongoose.connection.db.listCollections().toArray(function(err, names){
+      if(err){
+        console.log(err)
+      }else{
+        var insertData = true;
+        for(var i = 0; i < names.length; i++){
+         // console.log(names[i].name)
+          if(names[i].name == "UserRatings"){
+        insertData = false; 
+          }
+        }
+        if(insertData){
+          let all = fs.readFileSync('FinalMovieDataset.txt', "utf8");     
+          all = all.trim();  // final crlf in file
+   let lines = all.split("\r\n");
+   let n = lines.length;
+   var matrix = [];
+   for(var i=0; i < 610; i++) {
+       matrix[i] = new Array(9744);                        //we added one number to 9742 because we added the average;
+   }
+   
+   for (let i = 0; i < n; i++) {  // each line
+     let tokens = lines[i].split(" ");
+     
+     for (let j = 0; j < 9744;j++) {  // each val curr line
+       matrix[i][j] = Number(tokens[j]);
+     }
+   }
+   
+   let rowObj = {movieId: 0, rate: 0};
+   
+   for(let i = 0; i < 610; i++) {
+       let array = [];
+       for(let j = 2; j < 9744; j ++) {
+           if( matrix[i][j] == 0) { 
+               continue;
+           }
+           else { 
+               rowObj = {movieId: j-2, rate: matrix[i][j]};
+               array.push(rowObj);
+              
+           }   
+       }
+     
+     let user =  new UserRatings({email: matrix[i][0], average: matrix[i][1], ratings:array});
+       db.collection("UserRatings").insert(user, function (err, results) {                                 //how to insert users into mongodb
+           console.log(results)
+       }); 
+    
+   }
+        }
+      }
+      res.send("user ratings are now in the database")
+    })
+  
+  
+    });
+
+  /*var all = fs.readFileSync('array.txt', 'utf8');
 all = all.trim();  // final crlf in file
 let numbers = all.split(",").map(Number);
 
@@ -591,7 +685,8 @@ let numbers = all.split(",").map(Number);
     });*/
 
     
-   /*   var fs = require('fs');
+   /* 
+   //  var fs = require('fs');
 let all = fs.readFileSync('FinalMovieDataset.txt', "utf8");     
        all = all.trim();  // final crlf in file
 let lines = all.split("\r\n");
