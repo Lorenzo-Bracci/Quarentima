@@ -55,7 +55,7 @@ var Resources = mongoose.model('Resources', resources);
 var UserRatings = mongoose.model('UserRatings', userRatings);
 
 const port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 //app.use(express.static(__dirname + '/QuarenTimeLeo/dist/QuarenTime'));
 
 
@@ -66,9 +66,12 @@ app.get('/', (req,res) => {
 //console.log("hello")
 });
 
-const server = http.createServer(app);
+//const server = http.createServer(app);
 
-server.listen(port,() => console.log( "this compiles!"));
+app.listen(port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", port " + port )
+});
+//server.listen(port,() => console.log( "this compiles!"));
 
 app.get('/get-users', function(req, res, next){
     var results = [];
