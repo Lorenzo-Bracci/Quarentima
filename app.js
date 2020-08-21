@@ -54,9 +54,9 @@ var NewMovies = mongoose.model('NewMovies',newMovies);
 var Resources = mongoose.model('Resources', resources);
 var UserRatings = mongoose.model('UserRatings', userRatings);
 
-const port = process.env.PORT || 3000;
+const port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
-app.use(express.static(__dirname + '/QuarenTimeLeo/dist/QuarenTime'));
+//app.use(express.static(__dirname + '/QuarenTimeLeo/dist/QuarenTime'));
 
 
 
